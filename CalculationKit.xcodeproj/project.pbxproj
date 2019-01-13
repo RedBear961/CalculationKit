@@ -10,6 +10,29 @@
 		CB52F8E021E656620014ABA3 /* CalculationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB52F8D621E656620014ABA3 /* CalculationKit.framework */; };
 		CB52F8E521E656620014ABA3 /* CalculationKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CB52F8E421E656620014ABA3 /* CalculationKitTests.m */; };
 		CB52F8E721E656620014ABA3 /* CalculationKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CB52F8D921E656620014ABA3 /* CalculationKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB52F8F121E656910014ABA3 /* CLBase.h in Headers */ = {isa = PBXBuildFile; fileRef = CB52F8F021E656910014ABA3 /* CLBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB52F8F421E6579F0014ABA3 /* CLExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = CB52F8F221E6579F0014ABA3 /* CLExpression.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB52F8F521E6579F0014ABA3 /* CLExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = CB52F8F321E6579F0014ABA3 /* CLExpression.m */; };
+		CB6A94CF21EB848C00E760BF /* CLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6A94CE21EB848C00E760BF /* CLAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB6E16F521EB6FE200CBD872 /* CLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6E16F321EB6FE200CBD872 /* CLOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB6E16F621EB6FE200CBD872 /* CLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6E16F421EB6FE200CBD872 /* CLOperation.m */; };
+		CB6E16F921EB6FED00CBD872 /* CLPrefixFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6E16F721EB6FED00CBD872 /* CLPrefixFunction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB6E16FA21EB6FED00CBD872 /* CLPrefixFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6E16F821EB6FED00CBD872 /* CLPrefixFunction.m */; };
+		CB6E16FD21EB6FF900CBD872 /* CLPostfixFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6E16FB21EB6FF900CBD872 /* CLPostfixFunction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB6E16FE21EB6FF900CBD872 /* CLPostfixFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6E16FC21EB6FF900CBD872 /* CLPostfixFunction.m */; };
+		CB726B8C21EB523700C34CD6 /* CLReversePolishNotation.h in Headers */ = {isa = PBXBuildFile; fileRef = CB726B8A21EB523700C34CD6 /* CLReversePolishNotation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB726B8D21EB523700C34CD6 /* CLReversePolishNotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CB726B8B21EB523700C34CD6 /* CLReversePolishNotation.m */; };
+		CB72C55721EB43D300345AD0 /* CLTokenizedExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = CB72C55521EB43D300345AD0 /* CLTokenizedExpression.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB72C55821EB43D300345AD0 /* CLTokenizedExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = CB72C55621EB43D300345AD0 /* CLTokenizedExpression.m */; };
+		CB8EC30921EA251500457535 /* CLToken.h in Headers */ = {isa = PBXBuildFile; fileRef = CB8EC30721EA251500457535 /* CLToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB8EC30A21EA251500457535 /* CLToken.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8EC30821EA251500457535 /* CLToken.m */; };
+		CB8FB71521EB42AE00D6DD30 /* CLTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = CB8FB71321EB42AE00D6DD30 /* CLTokenizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB8FB71621EB42AE00D6DD30 /* CLTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8FB71421EB42AE00D6DD30 /* CLTokenizer.m */; };
+		CBED1F0321EB932E007A45A0 /* CLError.h in Headers */ = {isa = PBXBuildFile; fileRef = CBED1F0221EB932E007A45A0 /* CLError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CBEF4D9721EB937500FD4D9A /* CLError.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEF4D9621EB937500FD4D9A /* CLError.m */; };
+		CBEF4D9921EB93AE00FD4D9A /* CLBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CBEF4D9821EB93AE00FD4D9A /* CLBase.m */; };
+		CBFA209521EB4C7800C78467 /* CLStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFA209321EB4C7800C78467 /* CLStack.m */; };
+		CBFA209621EB4C7800C78467 /* CLStack.h in Headers */ = {isa = PBXBuildFile; fileRef = CBFA209421EB4C7800C78467 /* CLStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +52,29 @@
 		CB52F8DF21E656620014ABA3 /* CalculationKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculationKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB52F8E421E656620014ABA3 /* CalculationKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculationKitTests.m; sourceTree = "<group>"; };
 		CB52F8E621E656620014ABA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB52F8F021E656910014ABA3 /* CLBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLBase.h; sourceTree = "<group>"; };
+		CB52F8F221E6579F0014ABA3 /* CLExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLExpression.h; sourceTree = "<group>"; };
+		CB52F8F321E6579F0014ABA3 /* CLExpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLExpression.m; sourceTree = "<group>"; };
+		CB6A94CE21EB848C00E760BF /* CLAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLAction.h; sourceTree = "<group>"; };
+		CB6E16F321EB6FE200CBD872 /* CLOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLOperation.h; sourceTree = "<group>"; };
+		CB6E16F421EB6FE200CBD872 /* CLOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLOperation.m; sourceTree = "<group>"; };
+		CB6E16F721EB6FED00CBD872 /* CLPrefixFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLPrefixFunction.h; sourceTree = "<group>"; };
+		CB6E16F821EB6FED00CBD872 /* CLPrefixFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLPrefixFunction.m; sourceTree = "<group>"; };
+		CB6E16FB21EB6FF900CBD872 /* CLPostfixFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLPostfixFunction.h; sourceTree = "<group>"; };
+		CB6E16FC21EB6FF900CBD872 /* CLPostfixFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLPostfixFunction.m; sourceTree = "<group>"; };
+		CB726B8A21EB523700C34CD6 /* CLReversePolishNotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLReversePolishNotation.h; sourceTree = "<group>"; };
+		CB726B8B21EB523700C34CD6 /* CLReversePolishNotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLReversePolishNotation.m; sourceTree = "<group>"; };
+		CB72C55521EB43D300345AD0 /* CLTokenizedExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLTokenizedExpression.h; sourceTree = "<group>"; };
+		CB72C55621EB43D300345AD0 /* CLTokenizedExpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLTokenizedExpression.m; sourceTree = "<group>"; };
+		CB8EC30721EA251500457535 /* CLToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLToken.h; sourceTree = "<group>"; };
+		CB8EC30821EA251500457535 /* CLToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLToken.m; sourceTree = "<group>"; };
+		CB8FB71321EB42AE00D6DD30 /* CLTokenizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLTokenizer.h; sourceTree = "<group>"; };
+		CB8FB71421EB42AE00D6DD30 /* CLTokenizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLTokenizer.m; sourceTree = "<group>"; };
+		CBED1F0221EB932E007A45A0 /* CLError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLError.h; sourceTree = "<group>"; };
+		CBEF4D9621EB937500FD4D9A /* CLError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLError.m; sourceTree = "<group>"; };
+		CBEF4D9821EB93AE00FD4D9A /* CLBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLBase.m; sourceTree = "<group>"; };
+		CBFA209321EB4C7800C78467 /* CLStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLStack.m; sourceTree = "<group>"; };
+		CBFA209421EB4C7800C78467 /* CLStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLStack.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +118,29 @@
 			isa = PBXGroup;
 			children = (
 				CB52F8D921E656620014ABA3 /* CalculationKit.h */,
+				CB52F8F021E656910014ABA3 /* CLBase.h */,
+				CBEF4D9821EB93AE00FD4D9A /* CLBase.m */,
+				CBED1F0221EB932E007A45A0 /* CLError.h */,
+				CBEF4D9621EB937500FD4D9A /* CLError.m */,
+				CB52F8F221E6579F0014ABA3 /* CLExpression.h */,
+				CB52F8F321E6579F0014ABA3 /* CLExpression.m */,
+				CB8EC30721EA251500457535 /* CLToken.h */,
+				CB8EC30821EA251500457535 /* CLToken.m */,
+				CB8FB71321EB42AE00D6DD30 /* CLTokenizer.h */,
+				CB8FB71421EB42AE00D6DD30 /* CLTokenizer.m */,
+				CB72C55521EB43D300345AD0 /* CLTokenizedExpression.h */,
+				CB72C55621EB43D300345AD0 /* CLTokenizedExpression.m */,
+				CB726B8A21EB523700C34CD6 /* CLReversePolishNotation.h */,
+				CB726B8B21EB523700C34CD6 /* CLReversePolishNotation.m */,
+				CBFA209421EB4C7800C78467 /* CLStack.h */,
+				CBFA209321EB4C7800C78467 /* CLStack.m */,
+				CB6A94CE21EB848C00E760BF /* CLAction.h */,
+				CB6E16F321EB6FE200CBD872 /* CLOperation.h */,
+				CB6E16F421EB6FE200CBD872 /* CLOperation.m */,
+				CB6E16F721EB6FED00CBD872 /* CLPrefixFunction.h */,
+				CB6E16F821EB6FED00CBD872 /* CLPrefixFunction.m */,
+				CB6E16FB21EB6FF900CBD872 /* CLPostfixFunction.h */,
+				CB6E16FC21EB6FF900CBD872 /* CLPostfixFunction.m */,
 				CB52F8DA21E656620014ABA3 /* Info.plist */,
 			);
 			path = CalculationKit;
@@ -93,7 +162,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB52F8F121E656910014ABA3 /* CLBase.h in Headers */,
+				CB6A94CF21EB848C00E760BF /* CLAction.h in Headers */,
 				CB52F8E721E656620014ABA3 /* CalculationKit.h in Headers */,
+				CB52F8F421E6579F0014ABA3 /* CLExpression.h in Headers */,
+				CBED1F0321EB932E007A45A0 /* CLError.h in Headers */,
+				CB8EC30921EA251500457535 /* CLToken.h in Headers */,
+				CB8FB71521EB42AE00D6DD30 /* CLTokenizer.h in Headers */,
+				CB726B8C21EB523700C34CD6 /* CLReversePolishNotation.h in Headers */,
+				CB72C55721EB43D300345AD0 /* CLTokenizedExpression.h in Headers */,
+				CB6E16FD21EB6FF900CBD872 /* CLPostfixFunction.h in Headers */,
+				CB6E16F921EB6FED00CBD872 /* CLPrefixFunction.h in Headers */,
+				CB6E16F521EB6FE200CBD872 /* CLOperation.h in Headers */,
+				CBFA209621EB4C7800C78467 /* CLStack.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +274,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB6E16FA21EB6FED00CBD872 /* CLPrefixFunction.m in Sources */,
+				CBFA209521EB4C7800C78467 /* CLStack.m in Sources */,
+				CB6E16F621EB6FE200CBD872 /* CLOperation.m in Sources */,
+				CBEF4D9921EB93AE00FD4D9A /* CLBase.m in Sources */,
+				CBEF4D9721EB937500FD4D9A /* CLError.m in Sources */,
+				CB8EC30A21EA251500457535 /* CLToken.m in Sources */,
+				CB6E16FE21EB6FF900CBD872 /* CLPostfixFunction.m in Sources */,
+				CB726B8D21EB523700C34CD6 /* CLReversePolishNotation.m in Sources */,
+				CB52F8F521E6579F0014ABA3 /* CLExpression.m in Sources */,
+				CB72C55821EB43D300345AD0 /* CLTokenizedExpression.m in Sources */,
+				CB8FB71621EB42AE00D6DD30 /* CLTokenizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -323,7 +415,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -350,7 +442,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = webview.lab.mac.CalculationKit;
+				PRODUCT_BUNDLE_IDENTIFIER = webview.lab.mac.calculationkit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 			};
@@ -374,7 +466,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = webview.lab.mac.CalculationKit;
+				PRODUCT_BUNDLE_IDENTIFIER = webview.lab.mac.calculationkit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 			};

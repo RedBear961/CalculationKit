@@ -6,14 +6,6 @@
 //  Copyright © 2019 WebView, Lab. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
-//! Project version number for CalculationKit.
-FOUNDATION_EXPORT double CalculationKitVersionNumber;
-
-//! Project version string for CalculationKit.
-FOUNDATION_EXPORT const unsigned char CalculationKitVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <CalculationKit/PublicHeader.h>
-
-
+#import <CalculationKit/CLBase.h>
+#import <CalculationKit/CLExpression.h>
+#import <CalculationKit/CLError.h>
