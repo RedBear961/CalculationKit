@@ -8,6 +8,25 @@
 
 #import "CLReversePolishNotation.h"
 
+#import "CLStack.h"
+
+@interface CLReversePolishNotation ()
+
+@property (nonatomic) CLStack<CLToken *> *stack;
+
+@end
+
 @implementation CLReversePolishNotation
+
+- (instancetype)initWithTokenizedExpression:(CLTokenizedExpression *)expression
+									  error:(NSError * _Nullable __autoreleasing *)error {
+	self = [super init];
+	
+	if (self) {
+		
+	}
+	
+	return self;
+}
 
 @end

@@ -8,6 +8,7 @@
 
 #import "CLTokenizer.h"
 
+#import "CLError.h"
 #import "CLOperation.h"
 #import "CLPrefixFunction.h"
 #import "CLPostfixFunction.h"
@@ -22,14 +23,14 @@
 		NSString *cleanedString = [expression.stringValue stringByReplacingOccurrencesOfString:@" " withString:@""];
 		
 		// Ordered the buffer with the processed tokens.
-		NSMutableArray *tokensArray = [@[] mutableCopy];
+		CLMutableTokenizedExpression *tokenizedExpression = [[CLMutableTokenizedExpression alloc] init];
 		
 		// Main process loop.
 		NSUInteger index = 0;
 		while (index < cleanedString.length) {
 			CLTokenType nextType = [self nextTokenTypeInString:cleanedString
 												 startingIndex:index
-														buffer:tokensArray];
+														buffer:tokenizedExpression.array];
 			
 			NSString *stringValue = nil;
 			NSError *tokenizerError = nil;
@@ -48,8 +49,7 @@
 				case CLTokenTypePostfixFunction:
 					stringValue = [self stringValueForAction:cleanedString
 												   tokenType:nextType
-													   index:&index
-													   error:&tokenizerError];
+													   index:&index];
 					break;
 					
 				case CLTokenTypeOpeningBrace:
@@ -60,7 +60,9 @@
 					break;
 					
 				case CLTokenTypeUnknown:
-					// An error...
+					tokenizerError = [NSError errorWithDomain:CLTokenizerErrorDomain
+														 code:CLUnknownToken
+													 userInfo:nil];
 					break;
 			}
 			
@@ -72,10 +74,10 @@
 			}
 			
 			CLToken *token = [[CLToken alloc] initWithName:@"" type:nextType stringValue:stringValue];
-			[tokensArray addObject:token];
+			[tokenizedExpression addObject:token];
 		}
 		
-		_tokenizedExpression = [[CLTokenizedExpression alloc] initWithArray:tokensArray];
+		_tokenizedExpression = [tokenizedExpression copy];
 	}
 	
 	return self;
@@ -161,7 +163,10 @@
 		
 		// If a second point was detected, an error constructor will be called.
 		if (symbol == '.' && isInsidePoint) {
-			// An error...
+			if (error)
+				*error = [NSError errorWithDomain:CLTokenizerErrorDomain
+											 code:CLDuplicatePointNumbers
+										 userInfo:nil];
 			return nil;
 		}
 		
@@ -182,8 +187,7 @@
 
 - (NSString *)stringValueForAction:(NSString *)string
 						 tokenType:(CLTokenType)tokenType
-							 index:(NSUInteger *)index
-							 error:(NSError **)error {
+							 index:(NSUInteger *)index {
 	
 	Class<CLAction> action = nil;
 	switch (tokenType) {
@@ -203,8 +207,11 @@
 			return nil;
 	}
 	
+	// Substring from the index of the beginning of the search.
+	NSString *substring = [string substringFromIndex:*index];
+	
 	// Retrieves the length of the action.
-	NSUInteger lenght = [action containsAction:string];
+	NSUInteger lenght = [action containsAction:substring];
 	
 	// The symbol by which the type of token will be determined.
 	NSString *token = [string substringWithRange:NSMakeRange(*index, lenght)];

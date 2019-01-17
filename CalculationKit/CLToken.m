@@ -39,4 +39,8 @@
 	return [[self alloc] initWithName:name type:type stringValue:aString];
 }
 
+- (NSString *)description {
+	return _stringValue;
+}
+
 @end

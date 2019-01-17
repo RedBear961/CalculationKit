@@ -14,14 +14,24 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CLTokenizedExpression<__covariant ObjectType : CLToken *> : NSObject
 
 - (instancetype)initWithArray:(NSArray<ObjectType> *)aArray NS_DESIGNATED_INITIALIZER;
+- (NSArray<ObjectType> *)array;
 
 @property (readonly, nonatomic) NSUInteger count;
 
 - (ObjectType)firstObject;
-- (ObjectType)lastObject;
-
 - (ObjectType)nextObject;
-- (ObjectType)previousObject;
+
+@end
+
+@interface CLMutableTokenizedExpression<ObjectType : CLToken *> : CLTokenizedExpression
+
+@property (nonatomic) NSInteger currentIndex;
+
+- (void)addObject:(ObjectType)object;
+- (void)addObjectsFromArray:(NSArray<ObjectType> *)anArray;
+
+- (void)removeObject:(ObjectType)object;
+- (void)removeObjectsInArray:(NSArray<ObjectType> *)anArray;
 
 @end
 

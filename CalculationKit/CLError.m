@@ -7,3 +7,5 @@
 //
 
 #import "CLError.h"
+
+CLErrorDomain const CLTokenizerErrorDomain = @"CLTokenizerErrorDomain";

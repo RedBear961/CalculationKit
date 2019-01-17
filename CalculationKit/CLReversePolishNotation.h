@@ -7,10 +7,15 @@
 //
 
 #import <CalculationKit/CLBase.h>
+#import <CalculationKit/CLTokenizedExpression.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CLReversePolishNotation : NSObject
+
+@property (readonly, nonatomic) CLTokenizedExpression *reverseExpression;
+
+- (instancetype)initWithTokenizedExpression:(CLTokenizedExpression *)expression error:(NSError **)error;
 
 @end
 

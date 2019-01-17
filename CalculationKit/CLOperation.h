@@ -11,17 +11,26 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, CLOperationPriority) {
+	CLOperationPriorityLower = 0,
+	CLOperationPriorityMedium,
+	CLOperationPriorityHigh,
+	CLOperationPriorityUnknown = -1,
+};
+
 typedef CGFloat (^CLOperationBlock)(NSString *operation, CGFloat leftOperand, CGFloat rightOperand);
 
 @interface CLOperation : NSObject <CLAction>
 
-- (nullable instancetype)initWithSignature:(NSString *)signature;
-+ (nullable instancetype)operationWithSignature:(NSString *)signature;
++ (nullable CLOperation *)operationWithSignature:(NSString *)signature;
+
++ (CLOperationPriority)priorityForOperation:(NSString *)signature;
 
 - (CGFloat)calcWithLeftOperand:(CGFloat)left rightOperand:(CGFloat)right;
 + (CGFloat)calcOperation:(NSString *)operation leftOperand:(CGFloat)left rightOperand:(CGFloat)right;
 
-+ (void)registerOperation:(NSString *)operation calcBlock:(CLOperationBlock)block;
++ (void)registerOperation:(NSString *)operation calcBlock:(CLOperationBlock)block priority:(CLOperationPriority)priority;
++ (void)removeOperation:(NSString *)operation;
 
 @end
 

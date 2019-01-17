@@ -15,18 +15,13 @@ typedef CGFloat (^CLPostfixFunctionBlock)(NSString *postfixFunction, CGFloat ope
 
 @interface CLPostfixFunction : NSObject <CLAction>
 
-+ (NSUInteger)isPostfixFunction:(NSString *)aString;
-+ (BOOL)isUserPostfixFunction:(CLPostfixFunction *)function;
-
-@property (readonly, nonatomic) NSString *stringValue;
-
-- (nullable instancetype)initWithSignature:(NSString *)signature;
-+ (nullable instancetype)postfixFunctionWithSignature:(NSString *)signature;
++ (nullable CLPostfixFunction *)postfixFunctionWithSignature:(NSString *)signature;
 
 - (CGFloat)calcWithOperand:(CGFloat)operand;
 + (CGFloat)calcPostfixFunction:(NSString *)function withOperand:(CGFloat)operand;
 
 + (void)registerPostfixFunction:(NSString *)function calcBlock:(CLPostfixFunctionBlock)block;
++ (void)removePostfixFunction:(NSString *)signature;
 
 @end
 

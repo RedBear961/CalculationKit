@@ -10,7 +10,7 @@
 
 @interface CLTokenizedExpression ()
 
-@property (nonatomic) NSArray<CLToken *> *tokensArray;
+@property (nonatomic) NSMutableArray<CLToken *> *tokensArray;
 @property (nonatomic) NSInteger currentIndex;
 
 @end
@@ -25,11 +25,15 @@
 	self = [super init];
 	
 	if (self) {
-		_tokensArray = [aArray copy];
+		_tokensArray = [aArray mutableCopy];
 		_currentIndex = 0;
 	}
 	
 	return self;
+}
+
+- (NSArray *)array {
+	return [_tokensArray copy];
 }
 
 - (NSUInteger)count {
@@ -39,11 +43,6 @@
 - (CLToken *)firstObject {
 	_currentIndex = 0;
 	return _tokensArray.firstObject;
-}
-
-- (CLToken *)lastObject {
-	_currentIndex = _tokensArray.count - 2;
-	return _tokensArray.lastObject;
 }
 
 - (CLToken *)nextObject {
@@ -57,15 +56,59 @@
 	return token;
 }
 
-- (CLToken *)previousObject {
-	__kindof CLToken *token = nil;
+- (id)mutableCopy {
+	return [[CLMutableTokenizedExpression alloc] initWithArray:_tokensArray];
+}
+
+- (NSString *)description {
+	NSMutableString *description = [NSMutableString stringWithFormat:@"<%@ %p>(\n", self.className, self];
+	[description appendString:[_tokensArray componentsJoinedByString:@",\n"]];
+	[description appendString:@"\n)\n"];
+	return description;
+}
+
+@end
+
+@implementation CLMutableTokenizedExpression
+
+@dynamic currentIndex;
+
+- (id)copy {
+	return [[CLTokenizedExpression alloc] initWithArray:self.tokensArray];
+}
+
+- (id)mutableCopy {
+	return [[CLMutableTokenizedExpression alloc] initWithArray:self.tokensArray];
+}
+
+- (void)addObject:(CLToken *)object {
+	[self.tokensArray addObject:object];
+}
+
+- (void)addObjectsFromArray:(NSArray<CLToken *> *)anArray {
+	[self.tokensArray addObjectsFromArray:anArray];
+}
+
+- (void)removeObject:(CLToken *)object {
+	CLToken *currentObject = nil;
+	if (self.currentIndex < self.tokensArray.count)
+		 currentObject = [self.tokensArray objectAtIndex:self.currentIndex];
 	
-	if (_currentIndex >= 0) {
-		token = [_tokensArray objectAtIndex:_currentIndex];
-		--_currentIndex;
-	}
+	[self.tokensArray removeObject:object];
 	
-	return token;
+	if (currentObject)
+		self.currentIndex = [self.tokensArray indexOfObject:currentObject];
+}
+
+- (void)removeObjectsInArray:(NSArray<CLToken *> *)anArray {
+	CLToken *currentObject = nil;
+	if (self.currentIndex < self.tokensArray.count)
+		currentObject = [self.tokensArray objectAtIndex:self.currentIndex];
+	
+	[self.tokensArray removeObjectsInArray:anArray];
+	
+	if (currentObject)
+		self.currentIndex = [self.tokensArray indexOfObject:currentObject];
 }
 
 @end

@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic) NSString *stringValue;
 
 + (NSUInteger)containsAction:(NSString *)signature;
-- (BOOL)isUserAction:(id<CLAction>)action;
++ (BOOL)isUserAction:(NSString *)signature;
 
 @end
 

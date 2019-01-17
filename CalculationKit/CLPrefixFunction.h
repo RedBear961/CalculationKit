@@ -16,13 +16,15 @@ typedef CGFloat (^CLPrefixFunctionBlock)(NSString *prefixFunction, NSUInteger ar
 @interface CLPrefixFunction : NSObject <CLAction>
 
 @property (readonly, nonatomic) NSUInteger argumentCount;
++ (NSUInteger)argumentCountForPrefixFunction:(NSString *)signature;
 
-- (nullable instancetype)initWithSignature:(NSString *)signature;
-+ (nullable instancetype)prefixFunctionWithSignature:(NSString *)signature;
++ (nullable CLPrefixFunction *)prefixFunctionWithSignature:(NSString *)signature;
 
 - (CGFloat)calcWithArguments:(NSArray<NSNumber *> *)arguments;
++ (CGFloat)calcFunction:(NSString *)function arguments:(NSArray<NSNumber *> *)arguments;
 
-+ (void)registerPrefixFunction:(NSString *)function calcBlock:(CLPrefixFunctionBlock)block;
++ (void)registerPrefixFunction:(NSString *)function argumentCount:(NSUInteger)count calcBlock:(CLPrefixFunctionBlock)block;
++ (void)removePrefixFunction:(NSString *)signature;
 
 @end
 
