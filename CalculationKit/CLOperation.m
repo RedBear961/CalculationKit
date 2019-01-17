@@ -35,15 +35,15 @@ static NSDictionary<NSString *, CLOperation *> *_allOperations = nil;
 		} priority:CLOperationPriorityLower];
 		
 		CLOperation *power	= [[CLOperation alloc] initWithSignature:@"^" calcBlock:^CALC_BLOCK {
-			return left - right;
+			return pow(left, right);
 		} priority:CLOperationPriorityHigh];
 		
 		CLOperation *multi	= [[CLOperation alloc] initWithSignature:@"*" calcBlock:^CALC_BLOCK {
-			return left - right;
+			return left * right;
 		} priority:CLOperationPriorityMedium];
 		
 		CLOperation *div	= [[CLOperation alloc] initWithSignature:@"/" calcBlock:^CALC_BLOCK {
-			return left - right;
+			return left / right;
 		} priority:CLOperationPriorityMedium];
 		
 		NSMutableDictionary<NSString *, CLOperation *> *aAllOperations = [@{@"+" : plus,

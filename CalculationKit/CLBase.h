@@ -23,4 +23,16 @@ BOOL CalculationKitUsesRadians(void);
 CL_EXPORT
 void CalculationKitSetUseRadians(BOOL flag);
 
+CL_EXPORT
+NSUInteger CalculationKitCountOfDecimalPlaces(void);
+
+CL_EXPORT
+void CalculationKitSetCountOfDecimalPlaces(NSUInteger count);
+
+CL_EXPORT
+CGFloat CLRoundFractionPart(CGFloat number, NSUInteger sign);
+
+CL_EXPORT
+CGFloat CLRoundIntegerPart(CGFloat number, NSUInteger discharge);
+
 #endif /* __CALCULATION_KIT_BASE__ */

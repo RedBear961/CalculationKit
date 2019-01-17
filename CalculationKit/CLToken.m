@@ -20,7 +20,12 @@
 		
 		switch (type) {
 			case CLTokenTypeConstant:
-				_constant = [aString doubleValue];
+				if ([aString hasPrefix:@"+-"] || [aString hasPrefix:@"-+"] || [aString hasPrefix:@"++"])
+					_stringValue = [aString substringFromIndex:1];
+				else if ([aString hasPrefix:@"--"])
+					_stringValue = [aString substringFromIndex:2];
+				
+				_constant = [_stringValue doubleValue];
 				break;
 				
 			case CLTokenTypeVariable:

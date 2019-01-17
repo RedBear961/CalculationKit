@@ -9,6 +9,7 @@
 #import "CLBase.h"
 
 static BOOL _useRadians = NO;
+static NSUInteger _countOfDecimal = 5;
 
 BOOL CalculationKitUsesRadians(void) {
 	return _useRadians;
@@ -16,4 +17,22 @@ BOOL CalculationKitUsesRadians(void) {
 
 void CalculationKitSetUseRadians(BOOL flag) {
 	_useRadians = flag;
+}
+
+NSUInteger CalculationKitCountOfDecimalPlaces(void) {
+	return _countOfDecimal;
+}
+
+void CalculationKitSetCountOfDecimalPlaces(NSUInteger count) {
+	_countOfDecimal = count ?: 1;
+}
+
+CGFloat CLRoundFractionPart(CGFloat number, NSUInteger sign) {
+	NSUInteger multi = 10;
+	for (int i = 0; i < sign; ++i, multi *= 10);
+	return round(number * multi) / multi;
+}
+
+CGFloat CLRoundIntegerPart(CGFloat number, NSUInteger discharge) {
+	return 0;
 }

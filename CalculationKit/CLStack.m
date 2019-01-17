@@ -37,6 +37,10 @@
 	return _buffer.count;
 }
 
+- (void)reset {
+	[_buffer removeAllObjects];
+}
+
 - (NSString *)description {
 	return _buffer.description;
 }

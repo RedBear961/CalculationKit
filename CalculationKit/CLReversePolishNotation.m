@@ -10,6 +10,7 @@
 
 #import "CLOperation.h"
 #import "CLStack.h"
+#import "CLError.h"
 
 @interface CLReversePolishNotation ()
 
@@ -49,8 +50,7 @@
 				// Binary operation processing.
 				case CLTokenTypeOperation:
 					[self processOperation:token
-							 outExpression:reverseExpression
-									 error:&postfixError];
+							 outExpression:reverseExpression];
 					break;
 					
 				// The actions for the prefix function and the open brace are identical.
@@ -102,8 +102,7 @@
 }
 
 - (void)processOperation:(CLToken *)token
-		   outExpression:(CLMutableTokenizedExpression *)expression
-				   error:(NSError **)error {
+		   outExpression:(CLMutableTokenizedExpression *)expression {
 	// Start processing the stack if it is not empty.
 	if (_stack.count) {
 		// Getting the top of the stack.
@@ -144,13 +143,13 @@
 	[_stack push:token];
 }
 
-- (void)processClosingBrace:(CLToken *)token
+- (NSUInteger)processClosingBrace:(CLToken *)token
 			  outExpression:(CLMutableTokenizedExpression *)expression
-					  error:(NSError **)error {
+					  error:(NSError * _Nonnull *)error {
 	// Getting the top of the stack.
 	CLToken *stackToken = [_stack pop];
 	
-	if (stackToken.type == CLTokenTypeOpeningBrace) return;
+	if (stackToken.type == CLTokenTypeOpeningBrace) return 0;
 	
 	// The creation of the observer error.
 	// It is set to true, and when the opening of the bracket is found, it will be set to false.
@@ -170,21 +169,25 @@
 	}
 	
 	// If an open bracket is not found, the brackets are not matched.
-	if (isError) {
-		// ...
+	if (isError && error) {
+		*error = [NSError errorWithDomain:CLReversePolishNotationDomain
+									 code:CLInconsistentBrackets
+								 userInfo:nil];
 	}
+	
+	return 0;
 }
 
-- (void)processFunctionSeparator:(CLToken *)token
+- (NSUInteger)processFunctionSeparator:(CLToken *)token
 				   outExpression:(CLMutableTokenizedExpression *)expression
-						   error:(NSError **)error {
+						   error:(NSError * _Nonnull *)error {
 	// Getting the top of the stack.
 	CLToken *stackToken = [_stack pop];
 	
 	//
 	if (stackToken.type == CLTokenTypeOpeningBrace) {
 		[_stack push:stackToken];
-		return;
+		return 0;
 	}
 	
 	// The creation of the observer error.
@@ -208,9 +211,13 @@
 	}
 	
 	// If an open bracket is not found, the brackets are not matched.
-	if (isError) {
-		// ...
+	if (isError && error) {
+		*error = [NSError errorWithDomain:CLReversePolishNotationDomain
+									 code:CLInconsistentBrackets
+								 userInfo:nil];
 	}
+	
+	return 0;
 }
 
 @end

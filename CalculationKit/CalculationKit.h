@@ -8,6 +8,7 @@
 
 #import <CalculationKit/CLBase.h>
 #import <CalculationKit/CLExpression.h>
+#import <CalculationKit/CLCalculator.h>
 #import <CalculationKit/CLToken.h>
 #import <CalculationKit/CLTokenizedExpression.h>
 #import <CalculationKit/CLAction.h>

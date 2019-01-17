@@ -13,6 +13,8 @@
 		CB52F8F121E656910014ABA3 /* CLBase.h in Headers */ = {isa = PBXBuildFile; fileRef = CB52F8F021E656910014ABA3 /* CLBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CB52F8F421E6579F0014ABA3 /* CLExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = CB52F8F221E6579F0014ABA3 /* CLExpression.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CB52F8F521E6579F0014ABA3 /* CLExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = CB52F8F321E6579F0014ABA3 /* CLExpression.m */; };
+		CB64BEE721F0CFD100BD7251 /* CLCalculator.h in Headers */ = {isa = PBXBuildFile; fileRef = CB64BEE521F0CFD100BD7251 /* CLCalculator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB64BEE821F0CFD100BD7251 /* CLCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = CB64BEE621F0CFD100BD7251 /* CLCalculator.m */; };
 		CB6A94CF21EB848C00E760BF /* CLAction.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6A94CE21EB848C00E760BF /* CLAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CB6E16F521EB6FE200CBD872 /* CLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6E16F321EB6FE200CBD872 /* CLOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CB6E16F621EB6FE200CBD872 /* CLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6E16F421EB6FE200CBD872 /* CLOperation.m */; };
@@ -55,6 +57,8 @@
 		CB52F8F021E656910014ABA3 /* CLBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLBase.h; sourceTree = "<group>"; };
 		CB52F8F221E6579F0014ABA3 /* CLExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLExpression.h; sourceTree = "<group>"; };
 		CB52F8F321E6579F0014ABA3 /* CLExpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLExpression.m; sourceTree = "<group>"; };
+		CB64BEE521F0CFD100BD7251 /* CLCalculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLCalculator.h; sourceTree = "<group>"; };
+		CB64BEE621F0CFD100BD7251 /* CLCalculator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLCalculator.m; sourceTree = "<group>"; };
 		CB6A94CE21EB848C00E760BF /* CLAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLAction.h; sourceTree = "<group>"; };
 		CB6E16F321EB6FE200CBD872 /* CLOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLOperation.h; sourceTree = "<group>"; };
 		CB6E16F421EB6FE200CBD872 /* CLOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLOperation.m; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 				CB6E16F821EB6FED00CBD872 /* CLPrefixFunction.m */,
 				CB6E16FB21EB6FF900CBD872 /* CLPostfixFunction.h */,
 				CB6E16FC21EB6FF900CBD872 /* CLPostfixFunction.m */,
+				CB64BEE521F0CFD100BD7251 /* CLCalculator.h */,
+				CB64BEE621F0CFD100BD7251 /* CLCalculator.m */,
 				CB52F8DA21E656620014ABA3 /* Info.plist */,
 			);
 			path = CalculationKit;
@@ -173,6 +179,7 @@
 				CB72C55721EB43D300345AD0 /* CLTokenizedExpression.h in Headers */,
 				CB6E16FD21EB6FF900CBD872 /* CLPostfixFunction.h in Headers */,
 				CB6E16F921EB6FED00CBD872 /* CLPrefixFunction.h in Headers */,
+				CB64BEE721F0CFD100BD7251 /* CLCalculator.h in Headers */,
 				CB6E16F521EB6FE200CBD872 /* CLOperation.h in Headers */,
 				CBFA209621EB4C7800C78467 /* CLStack.h in Headers */,
 			);
@@ -280,6 +287,7 @@
 				CBEF4D9921EB93AE00FD4D9A /* CLBase.m in Sources */,
 				CBEF4D9721EB937500FD4D9A /* CLError.m in Sources */,
 				CB8EC30A21EA251500457535 /* CLToken.m in Sources */,
+				CB64BEE821F0CFD100BD7251 /* CLCalculator.m in Sources */,
 				CB6E16FE21EB6FF900CBD872 /* CLPostfixFunction.m in Sources */,
 				CB726B8D21EB523700C34CD6 /* CLReversePolishNotation.m in Sources */,
 				CB52F8F521E6579F0014ABA3 /* CLExpression.m in Sources */,
@@ -427,10 +435,11 @@
 		CB52F8EB21E656620014ABA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7C2D27973D;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -455,6 +464,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7C2D27973D;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

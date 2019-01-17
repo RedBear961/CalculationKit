@@ -120,9 +120,8 @@
 				return CLTokenTypeConstant;
 			
 			CLToken *token = [buffer lastObject];
-			if (token.type == CLTokenTypeOpeningBrace ||
-				(token.type == CLTokenTypeOperation && [token.stringValue isEqualToString:@"+"]
-				 && [token.stringValue isEqualToString:@"-"])) {
+			if (token.type == CLTokenTypeOpeningBrace || (token.type == CLTokenTypeOperation &&
+				([token.stringValue isEqualToString:@"+"] || [token.stringValue isEqualToString:@"-"]))) {
 				return CLTokenTypeConstant;
 			}
 		}
@@ -157,6 +156,14 @@
 		if (currentIndex == *index && (symbol == '-' || symbol == '+')) {
 			++currentIndex;
 			continue;
+		}
+		
+		if ((symbol == '-' || symbol == '+') && currentIndex == *index + 1) {
+			int prevSymbol = [string characterAtIndex:currentIndex - 1];
+			if (prevSymbol == '-' || prevSymbol == '+') {
+				++currentIndex;
+				continue;
+			}
 		}
 		
 		// The reading takes place while the character is a number or a point. There can be only one point in the number.

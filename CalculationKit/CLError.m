@@ -9,3 +9,5 @@
 #import "CLError.h"
 
 CLErrorDomain const CLTokenizerErrorDomain = @"CLTokenizerErrorDomain";
+CLErrorDomain const CLReversePolishNotationDomain = @"CLReversePolishNotationDomain";
+CLErrorDomain const CLCalculatorDomain = @"CLCalculatorDomain";
