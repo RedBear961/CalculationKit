@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly, nonatomic) NSUInteger count;
 
+- (void)reset;
 - (ObjectType)firstObject;
 - (ObjectType)nextObject;
 

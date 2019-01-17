@@ -16,11 +16,15 @@
 @implementation CLTokenizer
 
 - (instancetype)initWithExpression:(CLExpression *)expression error:(NSError * _Nullable __autoreleasing *)error {
+	return [self initWithString:expression.stringValue error:error];
+}
+
+- (instancetype)initWithString:(NSString *)aString error:(NSError * _Nullable __autoreleasing *)error {
 	self = [super init];
 	
 	if (self = [super init]) {
 		// Delete the space as unnecessary characters in the string.
-		NSString *cleanedString = [expression.stringValue stringByReplacingOccurrencesOfString:@" " withString:@""];
+		NSString *cleanedString = [aString stringByReplacingOccurrencesOfString:@" " withString:@""];
 		
 		// Ordered the buffer with the processed tokens.
 		CLMutableTokenizedExpression *tokenizedExpression = [[CLMutableTokenizedExpression alloc] init];

@@ -7,6 +7,7 @@
 //
 
 #import <CalculationKit/CLBase.h>
+#import <CalculationKit/CLExpression.h>
 #import <CalculationKit/CLTokenizedExpression.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -15,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly, nonatomic) CLTokenizedExpression *reverseExpression;
 
+- (instancetype)initWithExpression:(CLExpression *)expression error:(NSError * __autoreleasing *)error;
 - (instancetype)initWithTokenizedExpression:(CLTokenizedExpression *)expression error:(NSError **)error;
 
 @end

@@ -12,9 +12,9 @@
 #import <Foundation/Foundation.h>
 
 #if defined(__cplusplus)
-#define CL_EXPORT extern "C"
+	#define CL_EXPORT extern "C"
 #else
-#define CL_EXPORT extern
+	#define CL_EXPORT extern
 #endif
 
 CL_EXPORT

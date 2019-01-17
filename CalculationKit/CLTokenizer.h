@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic) CLTokenizedExpression *tokenizedExpression;
 
 - (instancetype)initWithExpression:(CLExpression *)expression error:(NSError * __autoreleasing *)error;
+- (instancetype)initWithString:(NSString *)aString error:(NSError * __autoreleasing *)error NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)init NS_UNAVAILABLE;
 
 @end
 

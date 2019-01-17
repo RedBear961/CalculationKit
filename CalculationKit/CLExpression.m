@@ -27,24 +27,24 @@
 		CLTokenizer *tokenizer = [[CLTokenizer alloc] initWithExpression:self error:&tokenizerError];
 		
 		if (tokenizerError) {
-			if (error) {
+			if (error)
 				*error = tokenizerError;
-			}
+			
 			return nil;
 		}
 		
 		NSError *rpnError = nil;
-		CLTokenizedExpression *tokenizedExpression = [tokenizer tokenizedExpression];
-		CLReversePolishNotation *reversePolishNotation = [[CLReversePolishNotation alloc] initWithTokenizedExpression:tokenizedExpression error:&rpnError];
+		_tokenizedExpression = [tokenizer tokenizedExpression];
+		CLReversePolishNotation *reversePolishNotation = [[CLReversePolishNotation alloc] initWithTokenizedExpression:_tokenizedExpression error:&rpnError];
 		
 		if (rpnError) {
-			if (error) {
+			if (error)
 				*error = rpnError;
-			}
+			
 			return nil;
 		}
 		
-		
+		_reversePolishNotation = [reversePolishNotation reverseExpression];
 	}
 	
 	return self;

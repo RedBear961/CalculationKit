@@ -10,9 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class CLTokenizedExpression;
+
 @interface CLExpression : NSObject
 
 @property (readonly, nonatomic) NSString *stringValue;
+@property (readonly, nonatomic) CLTokenizedExpression *tokenizedExpression;
+@property (readonly, nonatomic) CLTokenizedExpression *reversePolishNotation;
 
 - (instancetype)initWithString:(NSString *)aString error:(NSError * __autoreleasing *)error;
 

@@ -40,6 +40,10 @@
 	return _tokensArray.count;
 }
 
+- (void)reset {
+	_currentIndex = 0;
+}
+
 - (CLToken *)firstObject {
 	_currentIndex = 0;
 	return _tokensArray.firstObject;

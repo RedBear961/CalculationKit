@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @see CLTokenizer
  */
 typedef NS_ENUM(NSInteger, CLTokenType) {
-	CLTokenTypeConstant = 0, // A constant number, e.g. 10.2.
+	CLTokenTypeConstant = 0, // A constant number, e.g. '10.2'.
 	CLTokenTypeVariable, // A variable, e.g. 'y'.
 	CLTokenTypeOperation, // A binary operation, e.g. +.
 	CLTokenTypePrefixFunction, // A prefix function, e.g. sin().

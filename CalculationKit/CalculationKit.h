@@ -8,4 +8,12 @@
 
 #import <CalculationKit/CLBase.h>
 #import <CalculationKit/CLExpression.h>
+#import <CalculationKit/CLToken.h>
+#import <CalculationKit/CLTokenizedExpression.h>
+#import <CalculationKit/CLAction.h>
+#import <CalculationKit/CLOperation.h>
+#import <CalculationKit/CLPrefixFunction.h>
+#import <CalculationKit/CLPostfixFunction.h>
+#import <CalculationKit/CLReversePolishNotation.h>
+#import <CalculationKit/CLStack.h>
 #import <CalculationKit/CLError.h>
