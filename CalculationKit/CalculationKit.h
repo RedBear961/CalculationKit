@@ -10,6 +10,7 @@
 #import <CalculationKit/CLExpression.h>
 #import <CalculationKit/CLCalculator.h>
 #import <CalculationKit/CLToken.h>
+#import <CalculationKit/CLTokenizer.h>
 #import <CalculationKit/CLTokenizedExpression.h>
 #import <CalculationKit/CLAction.h>
 #import <CalculationKit/CLOperation.h>
