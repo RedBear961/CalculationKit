@@ -150,8 +150,10 @@ static NSDictionary<NSString *, CLPrefixFunction *> *_allFunctions = nil;
 
 #undef CALC_BLOCK
 
-+ (NSDictionary<NSString *, CLPrefixFunction *> *)userFunctions {
-	return [_userFunctions copy];
++ (NSMutableDictionary<NSString *, CLPrefixFunction *> *)userFunctions {
+	if (_userFunctions == nil)
+		_userFunctions = [@{} mutableCopy];
+	return _userFunctions;
 }
 
 + (CLPrefixFunction *)prefixFunctionWithSignature:(NSString *)signature {
@@ -203,7 +205,7 @@ static NSDictionary<NSString *, CLPrefixFunction *> *_allFunctions = nil;
 }
 
 + (BOOL)isUserAction:(NSString *)signature {
-	for (NSString *key in [_userFunctions allKeys]) {
+	for (NSString *key in [self.userFunctions allKeys]) {
 		if ([signature hasPrefix:key])
 			return YES;
 	}
@@ -211,17 +213,17 @@ static NSDictionary<NSString *, CLPrefixFunction *> *_allFunctions = nil;
 }
 
 + (void)registerPrefixFunction:(NSString *)signature argumentCount:(NSUInteger)count calcBlock:(CLPrefixFunctionBlock)block {
-	if ([self.allFunctions valueForKey:signature]) {
+	if (![self.allFunctions valueForKey:signature]) {
 		_allFunctions = nil;
 		CLPrefixFunction *function = [CLPrefixFunction prefixFunctionWithSignature:signature argumentCount:count calcBlock:block];
-		[_userFunctions setObject:function forKey:signature];
+		[self.userFunctions setObject:function forKey:signature];
 	}
 }
 
 + (void)removePrefixFunction:(NSString *)signature {
-	if ([_userFunctions valueForKey:signature]) {
+	if ([self.userFunctions valueForKey:signature]) {
 		_allFunctions = nil;
-		[_userFunctions removeObjectForKey:signature];
+		[self.userFunctions removeObjectForKey:signature];
 	}
 }
 

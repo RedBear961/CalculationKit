@@ -61,8 +61,10 @@ static NSDictionary<NSString *, CLOperation *> *_allOperations = nil;
 
 #undef CALC_BLOCK
 
-+ (NSDictionary<NSString *, CLOperation *> *)userOperations {
-	return [_userOperations copy];
++ (NSMutableDictionary<NSString *, CLOperation *> *)userOperations {
+	if (_userOperations == nil)
+		_userOperations = [@{} mutableCopy];
+	return _userOperations;
 }
 
 + (NSUInteger)containsAction:(NSString *)signature {
@@ -75,7 +77,7 @@ static NSDictionary<NSString *, CLOperation *> *_allOperations = nil;
 }
 
 + (BOOL)isUserAction:(NSString *)signature {
-	for (NSString *key in [_userOperations allKeys]) {
+	for (NSString *key in [self.userOperations allKeys]) {
 		if ([signature hasPrefix:key])
 			return YES;
 	}
@@ -125,14 +127,14 @@ static NSDictionary<NSString *, CLOperation *> *_allOperations = nil;
 	if (![self.allOperations valueForKey:signature]) {
 		_allOperations = nil;
 		CLOperation *operation = [[CLOperation alloc] initWithSignature:signature calcBlock:block priority:priority];
-		[_userOperations setObject:operation forKey:signature];
+		[self.userOperations setObject:operation forKey:signature];
 	}
 }
 
 + (void)removeOperation:(NSString *)signature {
-	if ([_userOperations valueForKey:signature]) {
+	if ([self.userOperations valueForKey:signature]) {
 		_allOperations = nil;
-		[_userOperations removeObjectForKey:signature];
+		[self.userOperations removeObjectForKey:signature];
 	}
 }
 

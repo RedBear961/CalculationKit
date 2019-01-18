@@ -100,8 +100,10 @@ static NSDictionary<NSString *, CLPostfixFunction *> *_allFunctions = nil;
 	@throw [NSException exceptionWithName:NSInvalidArgumentException reason:reason userInfo:nil];
 }
 
-+ (NSDictionary<NSString *, CLPostfixFunction *> *)userFunctions {
-	return [_userFunctions copy];
++ (NSMutableDictionary<NSString *, CLPostfixFunction *> *)userFunctions {
+	if (_userFunctions == nil)
+		_userFunctions = [@{} mutableCopy];
+	return _userFunctions;
 }
 
 + (NSUInteger)containsAction:(NSString *)signature {
@@ -114,7 +116,7 @@ static NSDictionary<NSString *, CLPostfixFunction *> *_allFunctions = nil;
 }
 
 + (BOOL)isUserAction:(NSString *)signature {
-	for (NSString *key in [_userFunctions allKeys]) {
+	for (NSString *key in [self.userFunctions allKeys]) {
 		if ([signature hasPrefix:key])
 			return YES;
 	}
@@ -122,17 +124,17 @@ static NSDictionary<NSString *, CLPostfixFunction *> *_allFunctions = nil;
 }
 
 + (void)registerPostfixFunction:(NSString *)signature calcBlock:(CLPostfixFunctionBlock)block {
-	if ([self.allFunctions valueForKey:signature]) {
+	if (![self.allFunctions valueForKey:signature]) {
 		_allFunctions = nil;
 		CLPostfixFunction *function = [CLPostfixFunction postfixFunctionWithSignature:signature calcBlock:block];
-		[_userFunctions setObject:function forKey:signature];
+		[self.userFunctions setObject:function forKey:signature];
 	}
 }
 
 + (void)removePostfixFunction:(NSString *)signature {
-	if ([_userFunctions valueForKey:signature]) {
+	if ([self.userFunctions valueForKey:signature]) {
 		_allFunctions = nil;
-		[_userFunctions removeObjectForKey:signature];
+		[self.userFunctions removeObjectForKey:signature];
 	}
 }
 
