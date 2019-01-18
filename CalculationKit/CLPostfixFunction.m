@@ -8,27 +8,6 @@
 
 #import "CLPostfixFunction.h"
 
-NSUInteger fact(NSUInteger n) {
-	if (!n || n == 1) {
-		return 1;
-	}
-	
-	return n * fact(n - 1);
-}
-
-NSUInteger doubleFact(NSUInteger n) {
-	if (!n) return 1;
-	
-	NSUInteger answer = 1;
-	NSUInteger factor = n % 2 ? 2 : 1;
-	
-	for (; answer <= n; factor += 2) {
-		answer = answer * factor;
-	}
-	
-	return answer;
-}
-
 @interface CLPostfixFunction ()
 
 @property (nonatomic) CLPostfixFunctionBlock block;
@@ -47,11 +26,11 @@ static NSDictionary<NSString *, CLPostfixFunction *> *_allFunctions = nil;
 + (NSDictionary<NSString *, CLPostfixFunction *> *)allFunctions {
 	if (!_allFunctions) {
 		CLPostfixFunction *factorial = [CLPostfixFunction postfixFunctionWithSignature:@"!" calcBlock:^CALC_BLOCK {
-			return fact(operand);
+			return [CLCalculator factorial:operand];
 		}];
 		
 		CLPostfixFunction *doubleFactorial = [CLPostfixFunction postfixFunctionWithSignature:@"!!" calcBlock:^CALC_BLOCK {
-			return doubleFact(operand);
+			return [CLCalculator doubleFactorial:operand];
 		}];
 		
 		NSMutableDictionary<NSString *, CLPostfixFunction *> *aAllFunctions = [@{@"!"	: factorial,
@@ -136,6 +115,31 @@ static NSDictionary<NSString *, CLPostfixFunction *> *_allFunctions = nil;
 		_allFunctions = nil;
 		[self.userFunctions removeObjectForKey:signature];
 	}
+}
+
+@end
+
+@implementation CLCalculator (CLPostfixFunction)
+
++ (NSUInteger)factorial:(NSUInteger)n {
+	if (!n || n == 1) {
+		return 1;
+	}
+	
+	return n * [self factorial:(n - 1)];
+}
+
++ (NSUInteger)doubleFactorial:(NSUInteger)n {
+	if (!n || n == 1) return 1;
+	
+	NSUInteger answer = 1;
+	NSUInteger factor = n % 2 ? 2 : 1;
+	
+	for (; answer <= n; factor += 2) {
+		answer = answer * factor;
+	}
+	
+	return answer;
 }
 
 @end

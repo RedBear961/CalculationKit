@@ -1,10 +1,10 @@
-//
-//  CLTokenizer.m
-//  CalculationKit
-//
-//  Created by God on 13.01.2019.
-//  Copyright © 2019 WebView, Lab. All rights reserved.
-//
+/**
+ * CLTokenizer.m
+ * CalculationKit
+ *
+ * Copyright © 2019 WebView, Lab.
+ * All rights reserved.
+ */
 
 #import "CLTokenizer.h"
 
@@ -15,16 +15,49 @@
 
 @implementation CLTokenizer
 
-- (instancetype)initWithExpression:(CLExpression *)expression error:(NSError * _Nullable __autoreleasing *)error {
+#pragma mark - Class Methods
+
+// Stores the delegate class.
+static Class<CLTokenizerProtocol> _protocolClass;
+
++ (void)registerProtocolClass:(Class<CLTokenizerProtocol>)protocolClass {
+	// Saves the class of the delegate.
+	_protocolClass = protocolClass;
+}
+
++ (void)unregisterProtocolClass {
+	// Clears the variable that holds the delegate class, thereby deleting it.
+	_protocolClass = nil;
+}
+
+#pragma mark - Processing
+
+- (instancetype)initWithExpression:(CLExpression *)expression error:(NSError **)error {
+	// Calls the designated constructor.
 	return [self initWithString:expression.stringValue error:error];
 }
 
-- (instancetype)initWithString:(NSString *)aString error:(NSError * _Nullable __autoreleasing *)error {
++ (instancetype)tokenizerWithExpression:(CLExpression *)expression error:(NSError **)error {
+	// Calls the designated constructor.
+	return [[self alloc] initWithString:expression.stringValue error:error];
+}
+
++ (instancetype)tokenizerWithString:(NSString *)aString error:(NSError **)error {
+	// Calls the designated constructor.
+	return [[self alloc] initWithString:aString error:error];
+}
+
+- (instancetype)initWithString:(NSString *)aString error:(NSError **)error {
 	self = [super init];
 	
 	if (self = [super init]) {
 		// Delete the space as unnecessary characters in the string.
 		NSString *cleanedString = [aString stringByReplacingOccurrencesOfString:@" " withString:@""];
+		
+		// Create a delegate if it has been registered.
+		id<CLTokenizerProtocol> delegate = nil;
+		if (_protocolClass)
+			delegate = [[(id)_protocolClass alloc] init];
 		
 		// Ordered the buffer with the processed tokens.
 		CLMutableTokenizedExpression *tokenizedExpression = [[CLMutableTokenizedExpression alloc] init];
@@ -32,22 +65,55 @@
 		// Main process loop.
 		NSUInteger index = 0;
 		while (index < cleanedString.length) {
+			// Get the next type of token.
 			CLTokenType nextType = [self nextTokenTypeInString:cleanedString
 												 startingIndex:index
 														buffer:tokenizedExpression.array];
 			
+			// Query the delegate about the correctness of the selected token type.
+			if ([delegate respondsToSelector:@selector(tokenizer:correctlyTokenType:forString:)]) {
+				NSString *substring = [cleanedString substringFromIndex:index];
+				BOOL isWrong = [delegate tokenizer:self correctlyTokenType:nextType forString:substring];
+				
+				// If the type is not defined correctly.
+				if (isWrong) {
+					// The request to delegate to the correct type of token.
+					nextType = [delegate tokenizer:self tokenTypeForString:substring];
+					
+					// If the delegate was able to determine the type.
+					if (nextType != CLTokenTypeUnknown) {
+						CLToken *token = [delegate tokenizer:self
+												tokenForType:nextType
+													inString:substring
+														name:@""];
+						
+						if (token) {
+							index += token.stringValue.length;
+							[tokenizedExpression addObject:token];
+							continue;
+						}
+						
+						// If the delegate was unable to generate the token.
+						nextType = CLTokenTypeUnknown;
+					}
+				}
+			}
+			
 			NSString *stringValue = nil;
 			NSError *tokenizerError = nil;
 			switch (nextType) {
+				// Processing of the numeric token.
 				case CLTokenTypeConstant:
 					stringValue = [self stringValueForConstantToken:cleanedString
 															  index:&index
 															  error:&tokenizerError];
 					break;
-					
+				
+				// Variable handling.
 				case CLTokenTypeVariable:
 					break;
 					
+				// Processing actions.
 				case CLTokenTypeOperation:
 				case CLTokenTypePrefixFunction:
 				case CLTokenTypePostfixFunction:
@@ -56,20 +122,44 @@
 													   index:&index];
 					break;
 					
+				// Processing of service token types.
 				case CLTokenTypeOpeningBrace:
 				case CLTokenTypeClosingBrace:
 				case CLTokenTypeSeparator:
 					stringValue = [NSString stringWithFormat:@"%c", [cleanedString characterAtIndex:index]];
 					++index;
 					break;
-					
+				
+				// An attempt to process a token whose type has not been recognized.
 				case CLTokenTypeUnknown:
+					if (delegate) {
+						// The request to delegate to the correct type of token.
+						NSString *substring = [cleanedString substringFromIndex:index];
+						nextType = [delegate tokenizer:self tokenTypeForString:substring];
+						
+						// If the delegate was able to determine the type.
+						if (nextType != CLTokenTypeUnknown) {
+							CLToken *token = [delegate tokenizer:self
+													tokenForType:nextType
+														inString:substring
+															name:@""];
+							
+							if (token) {
+								index += token.stringValue.length;
+								[tokenizedExpression addObject:token];
+								continue;
+							}
+						}
+					}
+					
+					// Generate an error if the delegate is not assigned or it is also unable to allocate a token.
 					tokenizerError = [NSError errorWithDomain:CLTokenizerErrorDomain
 														 code:CLUnknownToken
 													 userInfo:nil];
 					break;
 			}
 			
+			// Error handling.
 			if (tokenizerError) {
 				if (error)
 					*error = tokenizerError;
@@ -77,6 +167,7 @@
 				return nil;
 			}
 			
+			// Generation of the token.
 			CLToken *token = [[CLToken alloc] initWithName:@"" type:nextType stringValue:stringValue];
 			[tokenizedExpression addObject:token];
 		}
@@ -158,6 +249,7 @@
 			continue;
 		}
 		
+		// Treatment of unary plus or minus.
 		if ((symbol == '-' || symbol == '+') && currentIndex == *index + 1) {
 			int prevSymbol = [string characterAtIndex:currentIndex - 1];
 			if (prevSymbol == '-' || prevSymbol == '+') {
@@ -200,6 +292,7 @@
 						 tokenType:(CLTokenType)tokenType
 							 index:(NSUInteger *)index {
 	
+	// Define a class that has information about the token of the current type.
 	Class<CLAction> action = nil;
 	switch (tokenType) {
 		case CLTokenTypeOperation:

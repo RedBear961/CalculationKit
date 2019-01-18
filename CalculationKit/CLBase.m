@@ -1,38 +1,33 @@
-//
-//  CLBase.m
-//  CalculationKit
-//
-//  Created by God on 13.01.2019.
-//  Copyright © 2019 WebView, Lab. All rights reserved.
-//
+/*
+ * CLBase.m
+ * CalculationKit
+ *
+ * Copyright © 2019 WebView, Lab.
+ * All rights reserved.
+ */
 
 #import "CLBase.h"
 
-static BOOL _useRadians = NO;
-static NSUInteger _countOfDecimal = 5;
+@implementation CLBase
 
-BOOL CalculationKitUsesRadians(void) {
-	return _useRadians;
+- (instancetype)init {
+	self = [super init];
+	
+	if (self) {
+		_useRadians = NO;
+		_countOfDecimalPlaces = 5;
+	}
+	
+	return self;
 }
 
-void CalculationKitSetUseRadians(BOOL flag) {
-	_useRadians = flag;
++ (CLBase *)shared {
+	static CLBase *_shared = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		_shared = [[CLBase alloc] init];
+	});
+	return _shared;
 }
 
-NSUInteger CalculationKitCountOfDecimalPlaces(void) {
-	return _countOfDecimal;
-}
-
-void CalculationKitSetCountOfDecimalPlaces(NSUInteger count) {
-	_countOfDecimal = count ?: 1;
-}
-
-CGFloat CLRoundFractionPart(CGFloat number, NSUInteger sign) {
-	NSUInteger multi = 10;
-	for (int i = 0; i < sign; ++i, multi *= 10);
-	return round(number * multi) / multi;
-}
-
-CGFloat CLRoundIntegerPart(CGFloat number, NSUInteger discharge) {
-	return 0;
-}
+@end

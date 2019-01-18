@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGFloat)calcExpression:(CLExpression *)expression withError:(NSError **)error;
 
++ (CGFloat)roundFractionPart:(CGFloat)number;
++ (CGFloat)roundIntegerPart:(CGFloat)number NS_UNAVAILABLE;
+
 @end
 
 

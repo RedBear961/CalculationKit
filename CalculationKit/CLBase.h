@@ -1,38 +1,40 @@
-//
-//  CLBase.h
-//  CalculationKit
-//
-//  Created by God on 09.01.2019.
-//  Copyright © 2019 WebView, Lab. All rights reserved.
-//
-
-#ifndef __CALCULATION_KIT_BASE__
-#define __CALCULATION_KIT_BASE__
+/**
+ * CLBase.h
+ * CalculationKit
+ *
+ * Copyright © 2019 WebView, Lab.
+ * All rights reserved.
+ */
 
 #import <Foundation/Foundation.h>
 
-#if defined(__cplusplus)
-	#define CL_EXPORT extern "C"
-#else
-	#define CL_EXPORT extern
-#endif
+/**
+ * The base control class of the library, which is a singleton. Allows you to customize calculations,
+ 		such as specifying the number of decimal places as a result of calculations, or how the library
+ 		uses radians or degrees in trigonometric functions.
+ */
+@interface CLBase : NSObject
 
-CL_EXPORT
-BOOL CalculationKitUsesRadians(void);
+/**
+ * @property useRadians
+ * @abstract Specifies the library unit of angle measurement used in trigonometric, inverse trigonometric
+ 		and hyperbolic functions. By default, the library uses degrees.
+ */
+@property (nonatomic, getter=isUseRadians) BOOL useRadians;
 
-CL_EXPORT
-void CalculationKitSetUseRadians(BOOL flag);
+/**
+ * @property countOfDecimalPlaces
+ * @abstract Specifies the library how many decimal places it should return the result of a computation.
+ 		Rounding is performed according to the standard rules of mathematical rounding. By default,
+		the result is rounded to 5 characters after the dot.
+ * @discussion Rounding is performed only for the final result of calculations, for all intermediate results,
+ 		rounding is not performed.
+ */
+@property (nonatomic) NSUInteger countOfDecimalPlaces;
 
-CL_EXPORT
-NSUInteger CalculationKitCountOfDecimalPlaces(void);
+/**
+ * Returns the singleton variable of the class.
+ */
++ (CLBase *)shared;
 
-CL_EXPORT
-void CalculationKitSetCountOfDecimalPlaces(NSUInteger count);
-
-CL_EXPORT
-CGFloat CLRoundFractionPart(CGFloat number, NSUInteger sign);
-
-CL_EXPORT
-CGFloat CLRoundIntegerPart(CGFloat number, NSUInteger discharge);
-
-#endif /* __CALCULATION_KIT_BASE__ */
+@end

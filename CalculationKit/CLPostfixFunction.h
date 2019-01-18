@@ -8,6 +8,7 @@
 
 #import <CalculationKit/CLBase.h>
 #import <CalculationKit/CLAction.h>
+#import <CalculationKit/CLCalculator.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,6 +23,13 @@ typedef CGFloat (^CLPostfixFunctionBlock)(NSString *postfixFunction, CGFloat ope
 
 + (void)registerPostfixFunction:(NSString *)function calcBlock:(CLPostfixFunctionBlock)block;
 + (void)removePostfixFunction:(NSString *)signature;
+
+@end
+
+@interface CLCalculator (CLPostfixFunction)
+
++ (NSUInteger)factorial:(NSUInteger)number;
++ (NSUInteger)doubleFactorial:(NSUInteger)number;
 
 @end
 

@@ -1,10 +1,10 @@
-//
-//  CLToken.m
-//  CalculationKit
-//
-//  Created by God on 12.01.2019.
-//  Copyright © 2019 WebView, Lab. All rights reserved.
-//
+/*
+ * CLToken.m
+ * CalculationKit
+ *
+ * Copyright © 2019 WebView, Lab.
+ * All rights reserved.
+ */
 
 #import "CLToken.h"
 
@@ -14,12 +14,15 @@
 	self = [super init];
 	
 	if (self) {
+		// The preservation of values.
 		_name = name;
 		_type = type;
 		_stringValue = aString;
 		
+		// Handling the token type to determine whether the constant and variable properties need to be initialized.
 		switch (type) {
 			case CLTokenTypeConstant:
+				// Processing of the token to the existence of unary digits.
 				if ([aString hasPrefix:@"+-"] || [aString hasPrefix:@"-+"] || [aString hasPrefix:@"++"])
 					_stringValue = [aString substringFromIndex:1];
 				else if ([aString hasPrefix:@"--"])
@@ -40,11 +43,13 @@
 	return self;
 }
 
+// Replacing the constructor with a minus.
 + (instancetype)tokenWithName:(NSString *)name type:(CLTokenType)type stringValue:(NSString *)aString {
 	return [[self alloc] initWithName:name type:type stringValue:aString];
 }
 
 - (NSString *)description {
+	// Returns a string representation, as a descriptor.
 	return _stringValue;
 }
 

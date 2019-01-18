@@ -8,6 +8,7 @@
 
 #import "CLCalculator.h"
 
+#import "CLBase.h"
 #import "CLError.h"
 #import "CLStack.h"
 #import "CLTokenizedExpression.h"
@@ -90,8 +91,7 @@
 	NSNumber *lastValue = [_stack pop];
 	CGFloat answer = [lastValue doubleValue];
 	
-	NSUInteger countOfDecimal = CalculationKitCountOfDecimalPlaces();
-	answer = CLRoundFractionPart(answer, countOfDecimal);
+	answer = [CLCalculator roundFractionPart:answer];
 	return answer;
 }
 
@@ -153,6 +153,17 @@
 	CGFloat result = [function calcWithOperand:operand.doubleValue];
 	[_stack push:@(result)];
 	return 0;
+}
+
++ (CGFloat)roundFractionPart:(CGFloat)number {
+	CLBase *base = [CLBase shared];
+	NSUInteger signCount = [base countOfDecimalPlaces];
+	
+	if (!signCount) return (CGFloat)((unsigned long long)number);
+	
+	NSUInteger multi = 10;
+	for (int i = 0; i < signCount; ++i, multi *= 10);
+	return round(number * multi) / multi;
 }
 
 @end

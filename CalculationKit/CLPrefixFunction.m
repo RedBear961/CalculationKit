@@ -8,14 +8,16 @@
 
 #import "CLPrefixFunction.h"
 
-static CGFloat trigonometricOperand(CGFloat operand) {
-	BOOL isRad = CalculationKitUsesRadians();
-	return isRad ? operand : operand * (M_PI / 180.0);
+#import "CLBase.h"
+
+static inline CGFloat trigonometricOperand(CGFloat operand) {
+	CLBase *base = [CLBase shared];
+	return base.useRadians ? operand : operand * (M_PI / 180.0);
 }
 
-static CGFloat toDegress(void) {
-	BOOL isRad = CalculationKitUsesRadians();
-	return isRad ? 1.0 : (180.0 / M_PI);
+static inline CGFloat toDegress(void) {
+	CLBase *base = [CLBase shared];
+	return base.useRadians ? 1.0 : (180.0 / M_PI);
 }
 
 @interface CLPrefixFunction ()
