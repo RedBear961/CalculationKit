@@ -27,6 +27,8 @@ if (error) {
 ```
 ### Registration of user-defined functions
 
+CalculationKit also allows you to register user-defined prefix, postfix functions, and operations. Any function has a signature, and a prefix function also has a number of arguments. The following shows how to install a custom function.
+
 ```
 // The signature of the function.
 NSString *signature = @"sum";
