@@ -19,7 +19,7 @@ if (error) {
 }
 
 // Getting the result of the calculation.
-CGFloat result = [expression calc:&error];
+CGFloat result = [expression calc:&error]; // 2 + 2 = 4
 
 if (error) {
    // Error handling...
@@ -49,5 +49,5 @@ CLPrefixFunctionBlock calcBlock =
 
 // Using the new function.
 CLExpression *expression = [[CLExpression alloc] initWithString:@"sum(2, 2)" error:nil];
-CGFloat result = [expression calc:nil]; // sum(2, 2) = 2
+CGFloat result = [expression calc:nil]; // sum(2, 2) = 4
 ```
