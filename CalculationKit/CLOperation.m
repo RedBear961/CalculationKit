@@ -1,16 +1,19 @@
-//
-//  CLOperation.m
-//  CalculationKit
-//
-//  Created by God on 13.01.2019.
-//  Copyright © 2019 WebView, Lab. All rights reserved.
-//
+/*
+ * CLOperation.m
+ * CalculationKit
+ *
+ * Copyright © 2019 WebView, Lab.
+ * All rights reserved.
+ */
 
 #import "CLOperation.h"
 
 @interface CLOperation ()
 
+// Operation calculation block.
 @property (nonatomic) CLOperationBlock block;
+
+// The priority of the operation.
 @property (nonatomic) CLOperationPriority priority;
 
 @end
@@ -19,13 +22,17 @@
 
 @synthesize stringValue = _stringValue;
 
+// Buffer storage of the user operations.
 static NSMutableDictionary<NSString *, CLOperation *> *_userOperations = nil;
+
+// Storage buffer for all operations.
 static NSDictionary<NSString *, CLOperation *> *_allOperations = nil;
 
 #define CALC_BLOCK CGFloat(NSString *op, CGFloat left, CGFloat right)
 
 + (NSDictionary<NSString *, CLOperation *> *)allOperations {
 	if (!_allOperations) {
+		// Generate a standard set of supported operations.
 		CLOperation *plus 	= [[CLOperation alloc] initWithSignature:@"+" calcBlock:^CALC_BLOCK {
 			return left + right;
 		} priority:CLOperationPriorityLower];
@@ -52,6 +59,8 @@ static NSDictionary<NSString *, CLOperation *> *_allOperations = nil;
 																			@"*" : multi,
 																			@"/" : div,
 																			} mutableCopy];
+		
+		// Enable user operations.
 		[aAllOperations addEntriesFromDictionary:[self userOperations]];
 		_allOperations = [aAllOperations copy];
 	}

@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
  		token in the string.
  
  		By default, the tokenizer will not process tokens of the CLTokeTypeUnknown type, but you can
- 		assign a class to the tokenizer that supports the CLTokenizerProtocol Protocol to handle situations
+ 		assign a class to the tokenizer that supports the CLTokenizerProtocol to handle situations
  		that are disputed by the tokenizer.
  
  * @see CLPrefixFunction, CLPostfixFunction, CLOperation

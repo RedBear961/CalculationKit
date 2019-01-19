@@ -1,10 +1,10 @@
-//
-//  CLTokenizedExpression.m
-//  CalculationKit
-//
-//  Created by God on 13.01.2019.
-//  Copyright © 2019 WebView, Lab. All rights reserved.
-//
+/*
+ * CLTokenizedExpression.m
+ * CalculationKit
+ *
+ * Copyright © 2019 WebView, Lab.
+ * All rights reserved.
+ */
 
 #import "CLTokenizedExpression.h"
 
@@ -18,6 +18,7 @@
 @implementation CLTokenizedExpression
 
 - (instancetype)init {
+	// Passes the call to the designated constructor.
 	return [self initWithArray:@[]];
 }
 
@@ -33,6 +34,7 @@
 }
 
 - (NSArray *)array {
+	// Returns an immutable copy of the buffer.
 	return [_tokensArray copy];
 }
 
@@ -41,10 +43,12 @@
 }
 
 - (void)reset {
+	// Resets the sequence number.
 	_currentIndex = 0;
 }
 
 - (CLToken *)firstObject {
+	// Clears the sequence number and returns the first element.
 	_currentIndex = 0;
 	return _tokensArray.firstObject;
 }
@@ -52,6 +56,7 @@
 - (CLToken *)nextObject {
 	__kindof CLToken *token = nil;
 	
+	// Checks for the existence of the next element.
 	if (_currentIndex < _tokensArray.count) {
 		token = [_tokensArray objectAtIndex:_currentIndex];
 		++_currentIndex;
@@ -61,14 +66,16 @@
 }
 
 - (id)mutableCopy {
+	// Returns an heir - variable tokenized expression.
 	return [[CLMutableTokenizedExpression alloc] initWithArray:_tokensArray];
 }
 
 - (NSString *)description {
+	// Builds a class description. Identical to the array descriptor.
 	NSMutableString *description = [NSMutableString stringWithFormat:@"<%@ %p>(\n", self.className, self];
 	[description appendString:[_tokensArray componentsJoinedByString:@",\n"]];
 	[description appendString:@"\n)\n"];
-	return description;
+	return [description copy];
 }
 
 @end
@@ -78,41 +85,35 @@
 @dynamic currentIndex;
 
 - (id)copy {
+	// Returns its immutable copy.
 	return [[CLTokenizedExpression alloc] initWithArray:self.tokensArray];
 }
 
 - (id)mutableCopy {
+	// Returns its copy.
 	return [[CLMutableTokenizedExpression alloc] initWithArray:self.tokensArray];
 }
 
 - (void)addObject:(CLToken *)object {
+	// Adds a new element to the end of the array.
 	[self.tokensArray addObject:object];
 }
 
-- (void)addObjectsFromArray:(NSArray<CLToken *> *)anArray {
-	[self.tokensArray addObjectsFromArray:anArray];
-}
-
 - (void)removeObject:(CLToken *)object {
+	// Checks for the occurrence of a sequence number in the range of existing sequence numbers.
+	// Saves an object that has this sequence number.
 	CLToken *currentObject = nil;
 	if (self.currentIndex < self.tokensArray.count)
 		 currentObject = [self.tokensArray objectAtIndex:self.currentIndex];
 	
+	// Deletes the passed object.
 	[self.tokensArray removeObject:object];
 	
+	// Selects the new sequence number of the current item.
 	if (currentObject)
 		self.currentIndex = [self.tokensArray indexOfObject:currentObject];
-}
-
-- (void)removeObjectsInArray:(NSArray<CLToken *> *)anArray {
-	CLToken *currentObject = nil;
-	if (self.currentIndex < self.tokensArray.count)
-		currentObject = [self.tokensArray objectAtIndex:self.currentIndex];
-	
-	[self.tokensArray removeObjectsInArray:anArray];
-	
-	if (currentObject)
-		self.currentIndex = [self.tokensArray indexOfObject:currentObject];
+	else
+		self.currentIndex = 0;
 }
 
 @end

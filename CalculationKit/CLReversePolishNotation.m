@@ -1,10 +1,10 @@
-//
-//  CLReversePolishNotation.m
-//  CalculationKit
-//
-//  Created by God on 13.01.2019.
-//  Copyright © 2019 WebView, Lab. All rights reserved.
-//
+/*
+ * CLReversePolishNotation.m
+ * CalculationKit
+ *
+ * Copyright © 2019 WebView, Lab.
+ * All rights reserved.
+ */
 
 #import "CLReversePolishNotation.h"
 
@@ -14,18 +14,30 @@
 
 @interface CLReversePolishNotation ()
 
+// Stack that provides the implementation of the sorting station algorithm.
 @property (nonatomic) CLStack<CLToken *> *stack;
 
 @end
 
 @implementation CLReversePolishNotation
 
-- (instancetype)initWithExpression:(CLExpression *)expression error:(NSError * __autoreleasing *)error {
+- (instancetype)initWithExpression:(CLExpression *)expression error:(NSError **)error {
+	// Calls the designated constructor.
 	return [self initWithTokenizedExpression:expression.tokenizedExpression error:error];
 }
 
++ (instancetype)postfixNotationWithExpression:(CLExpression *)expression error:(NSError **)error {
+	// Calls the designated constructor.
+	return [[self alloc] initWithTokenizedExpression:expression.tokenizedExpression error:error];
+}
+
++ (instancetype)postfixNotationWithTokenizedExpression:(CLTokenizedExpression *)expression error:(NSError **)error {
+	// Calls the designated constructor.
+	return [[self alloc] initWithTokenizedExpression:expression error:error];
+}
+
 - (instancetype)initWithTokenizedExpression:(CLTokenizedExpression *)expression
-									  error:(NSError * _Nullable __autoreleasing *)error {
+									  error:(NSError **)error {
 	self = [super init];
 	
 	if (self) {

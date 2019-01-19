@@ -1,4 +1,4 @@
-/**
+/*
  * CLTokenizer.m
  * CalculationKit
  *
@@ -170,6 +170,16 @@ static Class<CLTokenizerProtocol> _protocolClass;
 			// Generation of the token.
 			CLToken *token = [[CLToken alloc] initWithName:@"" type:nextType stringValue:stringValue];
 			[tokenizedExpression addObject:token];
+			
+			// Makes a request to the delegate, whether to continue treatment.
+			if ([delegate respondsToSelector:@selector(tokenizer:shouldContinueProcessingString:originalString:)]) {
+				NSString *substring = [cleanedString substringFromIndex:index];
+				BOOL isExit = ![delegate tokenizer:self shouldContinueProcessingString:substring originalString:cleanedString];
+				
+				// Terminates, if the delegate has decided.
+				if (isExit)
+					break;
+			}
 		}
 		
 		_tokenizedExpression = [tokenizedExpression copy];

@@ -6,7 +6,6 @@
  * All rights reserved.
  */
 
-
 // The basis of the calculations.
 #import <CalculationKit/CLBase.h>
 #import <CalculationKit/CLExpression.h>
