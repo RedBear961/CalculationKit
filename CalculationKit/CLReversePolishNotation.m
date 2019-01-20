@@ -54,6 +54,7 @@
 			
 			switch (token.type) {
 				// The actions for the postfix function and the numbers are identical.
+				case CLTokenTypeDecimal:
 				case CLTokenTypeConstant:
 				case CLTokenTypePostfixFunction:
 					[reverseExpression addObject:token];

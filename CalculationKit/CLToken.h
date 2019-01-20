@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
  * @see CLTokenizer
  */
 typedef NS_ENUM(NSInteger, CLTokenType) {
-	CLTokenTypeConstant = 0, // A constant number, e.g. '10.2'.
+	CLTokenTypeDecimal = 0, // A number, e.g. '10.2'.
+	CLTokenTypeConstant, // A constant number, e.g. pi.
 	CLTokenTypeVariable, // A variable, e.g. 'y'.
 	CLTokenTypeOperation, // A binary operation, e.g. +.
 	CLTokenTypePrefixFunction, // A prefix function, e.g. sin().
@@ -66,6 +67,7 @@ typedef NS_ENUM(NSInteger, CLTokenType) {
 /**
  * @property constant
  * @abstract Numerical value of the token. Used if the token type is numeric. In all other cases it is -1.
+ * @see CLTokenType.CLTokenTypeDecimal
  * @see CLTokenType.CLTokenTypeConstant
  */
 @property (readonly, nonatomic) CGFloat constant;

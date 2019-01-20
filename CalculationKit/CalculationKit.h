@@ -16,6 +16,7 @@
 #import <CalculationKit/CLToken.h>
 #import <CalculationKit/CLTokenizer.h>
 #import <CalculationKit/CLTokenizedExpression.h>
+#import <CalculationKit/CLConstant.h>
 #import <CalculationKit/CLAction.h>
 #import <CalculationKit/CLOperation.h>
 #import <CalculationKit/CLPrefixFunction.h>

@@ -7,6 +7,7 @@
  */
 
 #import "CLToken.h"
+#import "CLConstant.h"
 
 @implementation CLToken
 
@@ -30,6 +31,9 @@
 				
 				_constant = [_stringValue doubleValue];
 				break;
+				
+			case CLTokenTypeDecimal:
+				_constant = [CLConstant constantWithString:aString].doubleValue;
 				
 			case CLTokenTypeVariable:
 				_variable = aString;

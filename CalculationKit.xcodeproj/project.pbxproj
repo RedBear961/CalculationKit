@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AFD92D221F51662007DEFAD /* CLConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFD92D021F51662007DEFAD /* CLConstant.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1AFD92D321F51662007DEFAD /* CLConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD92D121F51662007DEFAD /* CLConstant.m */; };
 		CB20B30D21F37DD200F3E7D5 /* CLExpressionFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = CB20B30B21F37DD200F3E7D5 /* CLExpressionFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CB20B30E21F37DD200F3E7D5 /* CLExpressionFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CB20B30C21F37DD200F3E7D5 /* CLExpressionFormatter.m */; };
 		CB52F8E021E656620014ABA3 /* CalculationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB52F8D621E656620014ABA3 /* CalculationKit.framework */; };
@@ -50,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1AFD92D021F51662007DEFAD /* CLConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLConstant.h; sourceTree = "<group>"; };
+		1AFD92D121F51662007DEFAD /* CLConstant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLConstant.m; sourceTree = "<group>"; };
 		CB20B30B21F37DD200F3E7D5 /* CLExpressionFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLExpressionFormatter.h; sourceTree = "<group>"; };
 		CB20B30C21F37DD200F3E7D5 /* CLExpressionFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLExpressionFormatter.m; sourceTree = "<group>"; };
 		CB52F8D621E656620014ABA3 /* CalculationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CalculationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +148,8 @@
 				CB726B8B21EB523700C34CD6 /* CLReversePolishNotation.m */,
 				CBFA209421EB4C7800C78467 /* CLStack.h */,
 				CBFA209321EB4C7800C78467 /* CLStack.m */,
+				1AFD92D021F51662007DEFAD /* CLConstant.h */,
+				1AFD92D121F51662007DEFAD /* CLConstant.m */,
 				CB6A94CE21EB848C00E760BF /* CLAction.h */,
 				CB6E16F321EB6FE200CBD872 /* CLOperation.h */,
 				CB6E16F421EB6FE200CBD872 /* CLOperation.m */,
@@ -185,6 +191,7 @@
 				CB726B8C21EB523700C34CD6 /* CLReversePolishNotation.h in Headers */,
 				CB72C55721EB43D300345AD0 /* CLTokenizedExpression.h in Headers */,
 				CB6E16FD21EB6FF900CBD872 /* CLPostfixFunction.h in Headers */,
+				1AFD92D221F51662007DEFAD /* CLConstant.h in Headers */,
 				CB6E16F921EB6FED00CBD872 /* CLPrefixFunction.h in Headers */,
 				CB64BEE721F0CFD100BD7251 /* CLCalculator.h in Headers */,
 				CB6E16F521EB6FE200CBD872 /* CLOperation.h in Headers */,
@@ -238,7 +245,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CL;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "WebView, Lab";
 				TargetAttributes = {
 					CB52F8D521E656620014ABA3 = {
@@ -299,6 +306,7 @@
 				CB64BEE821F0CFD100BD7251 /* CLCalculator.m in Sources */,
 				CB6E16FE21EB6FF900CBD872 /* CLPostfixFunction.m in Sources */,
 				CB726B8D21EB523700C34CD6 /* CLReversePolishNotation.m in Sources */,
+				1AFD92D321F51662007DEFAD /* CLConstant.m in Sources */,
 				CB52F8F521E6579F0014ABA3 /* CLExpression.m in Sources */,
 				CB72C55821EB43D300345AD0 /* CLTokenizedExpression.m in Sources */,
 				CB8FB71621EB42AE00D6DD30 /* CLTokenizer.m in Sources */,
@@ -445,11 +453,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BITCODE_GENERATION_MODE = bitcode;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 7C2D27973D;
+				DEVELOPMENT_TEAM = VUCWN498KD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -476,7 +484,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 7C2D27973D;
+				DEVELOPMENT_TEAM = VUCWN498KD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

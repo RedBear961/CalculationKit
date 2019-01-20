@@ -9,6 +9,7 @@
 #import "CLTokenizer.h"
 
 #import "CLError.h"
+#import "CLConstant.h"
 #import "CLOperation.h"
 #import "CLPrefixFunction.h"
 #import "CLPostfixFunction.h"
@@ -103,9 +104,15 @@ static Class<CLTokenizerProtocol> _protocolClass;
 			NSError *tokenizerError = nil;
 			switch (nextType) {
 				// Processing of the numeric token.
+				case CLTokenTypeDecimal:
+					stringValue = [self stringValueForDecimalToken:cleanedString
+															 index:&index
+															 error:&tokenizerError];
+					break;
+					
 				case CLTokenTypeConstant:
 					stringValue = [self stringValueForConstantToken:cleanedString
-															  index:&index
+															  index:index
 															  error:&tokenizerError];
 					break;
 				
@@ -196,7 +203,7 @@ static Class<CLTokenizerProtocol> _protocolClass;
 	
 	// If the character is a number, then the next token is obviously a number.
 	if (isnumber(symbol))
-		return CLTokenTypeConstant;
+		return CLTokenTypeDecimal;
 	
 	// The inclusion of parentheses is necessary because in infix notation there is precedence of operations.
 	if (symbol == '(')
@@ -212,7 +219,12 @@ static Class<CLTokenizerProtocol> _protocolClass;
 	// Substring from the index of the beginning of the search.
 	NSString *substring = [aString substringFromIndex:index];
 	
-	// Search operations and functions for entry.
+	// Search constants for entry.
+	if ([CLConstant hasConstant:substring]) {
+		return CLTokenTypeConstant;
+	}
+	
+	// Search operations for entry.
 	if ([CLOperation containsAction:substring]) {
 		// Check for unary minus or plus.
 		if ([substring hasPrefix:@"+"] || [substring hasPrefix:@"-"]) {
@@ -242,9 +254,9 @@ static Class<CLTokenizerProtocol> _protocolClass;
 	return CLTokenTypeUnknown;
 }
 
-- (NSString *)stringValueForConstantToken:(NSString *)string
-									index:(NSUInteger *)index
-									error:(NSError **)error {
+- (NSString *)stringValueForDecimalToken:(NSString *)string
+								   index:(NSUInteger *)index
+								   error:(NSError **)error {
 	// Index parsing started.
 	NSUInteger currentIndex = *index;
 	
@@ -296,6 +308,25 @@ static Class<CLTokenizerProtocol> _protocolClass;
 	*index = currentIndex;
 	
 	return output;
+}
+
+- (NSString *)stringValueForConstantToken:(NSString *)string
+									index:(NSUInteger *)index
+									error:(NSError **)error {
+	
+	// Substring from the index of the beginning of the search.
+	NSString *substring = [string substringFromIndex:*index];
+	
+	// Retrieves the length of the action.
+	NSUInteger lenght = [CLConstant hasConstant:substring];
+	
+	// The symbol by which the type of token will be determined.
+	NSString *token = [string substringWithRange:NSMakeRange(*index, lenght)];
+	
+	// Update index of the start of processing.
+	*index += lenght;
+	
+	return token;
 }
 
 - (NSString *)stringValueForAction:(NSString *)string

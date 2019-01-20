@@ -47,6 +47,7 @@
 		NSError *calculatorError = nil;
 		
 		switch (token.type) {
+			case CLTokenTypeDecimal:
 			case CLTokenTypeConstant:
 				[_stack push:@([token constant])];
 				break;
