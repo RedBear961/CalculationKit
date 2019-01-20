@@ -22,7 +22,7 @@
 		
 		// Handling the token type to determine whether the constant and variable properties need to be initialized.
 		switch (type) {
-			case CLTokenTypeConstant:
+			case CLTokenTypeDecimal:
 				// Processing of the token to the existence of unary digits.
 				if ([aString hasPrefix:@"+-"] || [aString hasPrefix:@"-+"] || [aString hasPrefix:@"++"])
 					_stringValue = [aString substringFromIndex:1];
@@ -32,7 +32,7 @@
 				_constant = [_stringValue doubleValue];
 				break;
 				
-			case CLTokenTypeDecimal:
+			case CLTokenTypeConstant:
 				_constant = [CLConstant constantWithString:aString].doubleValue;
 				
 			case CLTokenTypeVariable:

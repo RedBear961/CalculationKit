@@ -26,6 +26,14 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+	CLBase *base = [CLBase shared];
+	base.useRadians = YES;
+	
+	NSString *string = @"sin(pi / 2)";
+	CLExpression *expression = [CLExpression expressionWithString:string error:nil];
+	CGFloat result = [expression calc:nil];
+	
+	NSLog(@"1");
 }
 
 - (void)testPerformanceExample {

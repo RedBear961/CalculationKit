@@ -14,17 +14,17 @@ static NSMutableDictionary<NSString *, CLConstant *> *_constants;
 static NSMutableDictionary<NSString *, CLConstant *> *_userConstants;
 
 + (NSMutableDictionary<NSString *, CLConstant *> *)constants {
-	return _constants ?: [@{} mutableCopy];
-}
-
-+ (NSMutableDictionary<NSString *, CLConstant *> *)userConstants {
-	if (_userConstants == nil) {
+	if (_constants == nil) {
 		_constants = [@{@"pi" : [CLConstant constantWithString:@"pi" value:M_PI formattedValue:@"π"],
 						@"e" : [CLConstant constantWithString:@"e" value:M_E formattedValue:@"e"],
 						} mutableCopy];
 	}
 	
-	return _userConstants;
+	return _constants;
+}
+
++ (NSMutableDictionary<NSString *, CLConstant *> *)userConstants {
+	return _userConstants ?: [@{} mutableCopy];
 }
 
 + (NSUInteger)hasConstant:(NSString *)string {

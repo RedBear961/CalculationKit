@@ -112,7 +112,7 @@ static Class<CLTokenizerProtocol> _protocolClass;
 					
 				case CLTokenTypeConstant:
 					stringValue = [self stringValueForConstantToken:cleanedString
-															  index:index
+															  index:&index
 															  error:&tokenizerError];
 					break;
 				
