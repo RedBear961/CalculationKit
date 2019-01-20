@@ -17,6 +17,7 @@
 @implementation CLPostfixFunction
 
 @synthesize stringValue = _stringValue;
+@synthesize formattedValue = _formattedValue;
 
 static NSMutableDictionary<NSString *, CLPostfixFunction *> *_userFunctions = nil;
 static NSDictionary<NSString *, CLPostfixFunction *> *_allFunctions = nil;

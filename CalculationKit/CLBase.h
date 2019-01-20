@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+// To format expressions.
+#if TARGET_OS_IPHONE
+	#import <UIKit/UIKit.h>
+	#define CLFont UIFont
+#else
+	#import <Cocoa/Cocoa.h>
+	#define CLFont NSFont
+#endif
+
 /**
  * The base control class of the library, which is a singleton. Allows you to customize calculations,
  		such as specifying the number of decimal places as a result of calculations, or how the library

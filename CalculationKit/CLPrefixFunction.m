@@ -29,6 +29,7 @@ static inline CGFloat toDegress(void) {
 @implementation CLPrefixFunction
 
 @synthesize stringValue = _stringValue;
+@synthesize formattedValue = _formattedValue;
 
 static NSMutableDictionary<NSString *, CLPrefixFunction *> *_userFunctions = nil;
 static NSDictionary<NSString *, CLPrefixFunction *> *_allFunctions = nil;

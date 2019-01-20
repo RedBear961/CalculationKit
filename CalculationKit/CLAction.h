@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  		For example, for the addition operation, its signature is the string "+".
  */
 @property (readonly, nonatomic) NSString *stringValue;
+@property (readonly, nonatomic) NSString *formattedValue;
 
 /**
  * @abstract Checks the signature to be included in the operations of this class. Override the method to support

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB20B30D21F37DD200F3E7D5 /* CLExpressionFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = CB20B30B21F37DD200F3E7D5 /* CLExpressionFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB20B30E21F37DD200F3E7D5 /* CLExpressionFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CB20B30C21F37DD200F3E7D5 /* CLExpressionFormatter.m */; };
 		CB52F8E021E656620014ABA3 /* CalculationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB52F8D621E656620014ABA3 /* CalculationKit.framework */; };
 		CB52F8E521E656620014ABA3 /* CalculationKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CB52F8E421E656620014ABA3 /* CalculationKitTests.m */; };
 		CB52F8E721E656620014ABA3 /* CalculationKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CB52F8D921E656620014ABA3 /* CalculationKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -48,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB20B30B21F37DD200F3E7D5 /* CLExpressionFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLExpressionFormatter.h; sourceTree = "<group>"; };
+		CB20B30C21F37DD200F3E7D5 /* CLExpressionFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLExpressionFormatter.m; sourceTree = "<group>"; };
 		CB52F8D621E656620014ABA3 /* CalculationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CalculationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB52F8D921E656620014ABA3 /* CalculationKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculationKit.h; sourceTree = "<group>"; };
 		CB52F8DA21E656620014ABA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 				CBEF4D9621EB937500FD4D9A /* CLError.m */,
 				CB52F8F221E6579F0014ABA3 /* CLExpression.h */,
 				CB52F8F321E6579F0014ABA3 /* CLExpression.m */,
+				CB20B30B21F37DD200F3E7D5 /* CLExpressionFormatter.h */,
+				CB20B30C21F37DD200F3E7D5 /* CLExpressionFormatter.m */,
 				CB8EC30721EA251500457535 /* CLToken.h */,
 				CB8EC30821EA251500457535 /* CLToken.m */,
 				CB8FB71321EB42AE00D6DD30 /* CLTokenizer.h */,
@@ -174,6 +180,7 @@
 				CB52F8F421E6579F0014ABA3 /* CLExpression.h in Headers */,
 				CBED1F0321EB932E007A45A0 /* CLError.h in Headers */,
 				CB8EC30921EA251500457535 /* CLToken.h in Headers */,
+				CB20B30D21F37DD200F3E7D5 /* CLExpressionFormatter.h in Headers */,
 				CB8FB71521EB42AE00D6DD30 /* CLTokenizer.h in Headers */,
 				CB726B8C21EB523700C34CD6 /* CLReversePolishNotation.h in Headers */,
 				CB72C55721EB43D300345AD0 /* CLTokenizedExpression.h in Headers */,
@@ -230,6 +237,7 @@
 		CB52F8CD21E656620014ABA3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = CL;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "WebView, Lab";
 				TargetAttributes = {
@@ -283,6 +291,7 @@
 			files = (
 				CB6E16FA21EB6FED00CBD872 /* CLPrefixFunction.m in Sources */,
 				CBFA209521EB4C7800C78467 /* CLStack.m in Sources */,
+				CB20B30E21F37DD200F3E7D5 /* CLExpressionFormatter.m in Sources */,
 				CB6E16F621EB6FE200CBD872 /* CLOperation.m in Sources */,
 				CBEF4D9921EB93AE00FD4D9A /* CLBase.m in Sources */,
 				CBEF4D9721EB937500FD4D9A /* CLError.m in Sources */,

@@ -21,6 +21,7 @@
 @implementation CLOperation
 
 @synthesize stringValue = _stringValue;
+@synthesize formattedValue = _formattedValue;
 
 // Buffer storage of the user operations.
 static NSMutableDictionary<NSString *, CLOperation *> *_userOperations = nil;
@@ -45,11 +46,11 @@ static NSDictionary<NSString *, CLOperation *> *_allOperations = nil;
 			return pow(left, right);
 		} priority:CLOperationPriorityHigh];
 		
-		CLOperation *multi	= [[CLOperation alloc] initWithSignature:@"*" calcBlock:^CALC_BLOCK {
+		CLOperation *multi	= [[CLOperation alloc] initWithSignature:@"*" formattedValue:@"∙" calcBlock:^CALC_BLOCK {
 			return left * right;
 		} priority:CLOperationPriorityMedium];
 		
-		CLOperation *div	= [[CLOperation alloc] initWithSignature:@"/" calcBlock:^CALC_BLOCK {
+		CLOperation *div	= [[CLOperation alloc] initWithSignature:@"/" formattedValue:@"÷" calcBlock:^CALC_BLOCK {
 			return left / right;
 		} priority:CLOperationPriorityMedium];
 		
@@ -120,11 +121,30 @@ static NSDictionary<NSString *, CLOperation *> *_allOperations = nil;
 	@throw [NSException exceptionWithName:NSInvalidArgumentException reason:reason userInfo:nil];
 }
 
-- (instancetype)initWithSignature:(NSString *)signature calcBlock:(CLOperationBlock)block priority:(CLOperationPriority)priority {
+- (instancetype)initWithSignature:(NSString *)signature
+						calcBlock:(CLOperationBlock)block
+						 priority:(CLOperationPriority)priority {
 	self = [super init];
 	
 	if (self) {
 		_stringValue = signature;
+		_formattedValue = signature;
+		_block = block;
+		_priority = priority;
+	}
+	
+	return self;
+}
+
+- (instancetype)initWithSignature:(NSString *)signature
+				   formattedValue:(NSString *)value
+						calcBlock:(CLOperationBlock)block
+						 priority:(CLOperationPriority)priority {
+	self = [super init];
+	
+	if (self) {
+		_stringValue = signature;
+		_formattedValue = value;
 		_block = block;
 		_priority = priority;
 	}
